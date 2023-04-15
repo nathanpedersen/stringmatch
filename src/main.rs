@@ -41,7 +41,13 @@ fn main() {
     };
 
     for file in files {
-        let f = file.unwrap();
+        let f = match file {
+            Ok(de) => de,
+            Err(_) => {
+                println!("Error with DirEntry");
+                exit(0);
+            }
+        };
         let path = f.path();
 
         let name = match path.file_name() {
