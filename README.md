@@ -3,5 +3,5 @@ CLI program that finds files in given source directory that contain given string
 
 ## usage ##
 ```bash
-stringmatch <directory_path> <search_string> <destination_path>
+stringmatch <source_dir> <search_string> <destination_path>
 ```
