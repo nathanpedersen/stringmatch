@@ -2,7 +2,7 @@ use std::fs;
 use std::{env, process::exit};
 
 struct Arguments {
-    directory_path: String,
+    source_directory: String,
     search_string: String,
     destination_path: String,
 }
@@ -10,14 +10,14 @@ struct Arguments {
 fn parse_args(args: &Vec<String>) -> Result<Arguments, String> {
     if args.len() == 3 {
         let arguments = Arguments {
-            directory_path: args[0].clone(),
+            source_directory: args[0].clone(),
             search_string: args[1].clone(),
             destination_path: args[2].clone(),
         };
 
         return Ok(arguments);
     }
-    Err("Usage: stringmatch <directory_path> <search_string> <destination_path>".to_string())
+    Err("Usage: stringmatch <source_directory> <search_string> <destination_path>".to_string())
 }
 
 fn main() {
@@ -30,7 +30,7 @@ fn main() {
         }
     };
 
-    let files = match fs::read_dir(args.directory_path) {
+    let files = match fs::read_dir(args.source_directory) {
         Ok(f) => f,
         Err(_) => {
             println!(
